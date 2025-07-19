@@ -61,15 +61,13 @@ namespace TileCost_Calculator
                     length = double.Parse(Console.ReadLine());
                     Console.Write("Enter cost per flooring unit in [$/feet^2]: ");
                     costPerUnitFlooring = double.Parse(Console.ReadLine());
-                    
+
                     //shape related calculations;
                     surface = width * length;
                     materialCost = costPerUnitFlooring * surface;
-                    
                 }
                 else
                 {
-                    
                     //Calculate surface asking different dimensions(Radius => surface pi*Radious^2)
                     //add 10% extra in material calculation for scrap and extra work
                     //ask width, length and specific cost;
@@ -77,29 +75,28 @@ namespace TileCost_Calculator
                     radious = double.Parse(Console.ReadLine());
                     Console.Write("Enter cost per flooring unit in [$/feet^2]: ");
                     costPerUnitFlooring = double.Parse(Console.ReadLine());
-                    
+
                     //shape related calculations;
-                    surface =  Double.Pi * Math.Pow(radious, 2.0);
+                    surface = Double.Pi * Math.Pow(radious, 2.0);
                     materialCost = costPerUnitFlooring * surface * (1 + scrapRate);
-                    
                 }
 
                 //independent calculations and printing
                 requiredFlooringTime = surface / flooringTeamPerformance; //[hr]
                 //Labor specific cost [$/(feet^2*hr)] * [feet^2] * [hr] = [$]
                 flooringTeamCost = laborCostPerAreaPerHour * surface * requiredFlooringTime;
-                
+
                 //print results;
                 Console.WriteLine("------------------------------------------------");
-                Console.WriteLine($"Total surface to cover: {System.Math.Round(surface,2)} [feet^2]");
+                Console.WriteLine($"Total surface to cover: {System.Math.Round(surface, 2)} [feet^2]");
                 Console.WriteLine("------------------------------------------------");
-                Console.WriteLine($"Material cost: {System.Math.Round(materialCost,2)} [$]");
-                Console.WriteLine($"Flooring team cost: {System.Math.Round(flooringTeamCost,2)} [$]");
+                Console.WriteLine($"Material cost: {System.Math.Round(materialCost, 2)} [$]");
+                Console.WriteLine($"Flooring team cost: {System.Math.Round(flooringTeamCost, 2)} [$]");
                 Console.WriteLine("------------------------------------------------");
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"Total cost ====>: {System.Math.Round(flooringTeamCost + materialCost,2)} [$]");
+                Console.WriteLine($"Total cost ====>: {System.Math.Round(flooringTeamCost + materialCost, 2)} [$]");
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine($"Required flooring time: {System.Math.Round(requiredFlooringTime,2)} [hr]");
+                Console.WriteLine($"Required flooring time: {System.Math.Round(requiredFlooringTime, 2)} [hr]");
             }
         }
     }
