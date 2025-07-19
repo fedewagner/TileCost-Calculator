@@ -37,12 +37,12 @@ namespace TileCost_Calculator
             {
                 //Pick a shape (rectangular or circular)
                 Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine($"Do you want an 'rectangular' or 'circular' surface flooring?");
+                Console.WriteLine($"Do you want a 'rectangular' or 'circular' surface flooring?");
                 surfaceShape = Console.ReadLine();
                 if (surfaceShape != "rectangular" && surfaceShape != "circular")
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("You need to enter 'rectangular' or 'circular'.");
+                    Console.WriteLine("You have to enter 'rectangular' or 'circular'.");
                     Console.ForegroundColor = ConsoleColor.Blue;
                 }
             } while (surfaceShape != "rectangular" && surfaceShape != "circular");
