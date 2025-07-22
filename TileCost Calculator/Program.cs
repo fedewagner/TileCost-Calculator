@@ -6,32 +6,18 @@ namespace TileCost_Calculator
     {
         static void Main(string[] args)
         {
-            //done=> Ask the user to enter in width, length, and the cost per 1 unit of flooring.
-            //done=> Have the program calculate how much it would cost to cover the area specified with the flooring.
-            // Added Difficulty: Calculate how much flooring would be needed for non-rectangular rooms.
-            // Also figure out how much labor costs would be given that the average flooring team
-            // can only put in 20 square feet of flooring per hour at a cost of $86.00/hr.
-            // Pick ONE ADDITIONAL SHAPE (triangle / circle / etc) and implement the second shape,
-            // making the user select wich one they want to calculate (time for an if statement!)
-            double width;
-            double length;
-            double surface;
-            double costPerUnitFlooring;
-            double materialCost;
-            double flooringTeamCost;
-            double flooringTime;
-            double requiredFlooringTime;
-            double totalCost;
-            const double scrapRate = 0.10; //assumption for circular calculations
-            string surfaceShape;
-            double radious;
-
+            const double scrap_rate = 0.10; //assumption for circular calculations
             //can only put in 20 square feet of flooring per hour at a cost of $86.00/hr.
-            //Team cost in [$/(feet^2*hr)]
-            const double laborCostPerAreaPerHour = 86.0 / 20.0; //[$/(feet^2*hr)]
-            Console.WriteLine($"Debugging line | laborCostPerAreaPerHour = {laborCostPerAreaPerHour}");
+            const double labor_cost_per_area_per_hour = 86.0 / 20.0; //[$/(feet^2*hr)]
             //can only put in 20 square feet of flooring per hour at a cost of $86.00/hr. => Flooring performance = 20 feet2/hr
-            const double flooringTeamPerformance = 20; //[feet^2/hr]
+            const double flooring_team_performance = 20; //[feet^2/hr]
+            const string rectangular_string = "rectangular";
+            const string circular_string = "circular";
+
+            string surfaceShape;
+
+            //Team cost in [$/(feet^2*hr)]
+            Console.WriteLine($"Debugging line | laborCostPerAreaPerHour = {labor_cost_per_area_per_hour}");
 
             do
             {
@@ -39,18 +25,29 @@ namespace TileCost_Calculator
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine($"Do you want a 'rectangular' or 'circular' surface flooring?");
                 surfaceShape = Console.ReadLine();
-                if (surfaceShape != "rectangular" && surfaceShape != "circular")
+                if (surfaceShape != rectangular_string && surfaceShape != circular_string)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("You have to enter 'rectangular' or 'circular'.");
                     Console.ForegroundColor = ConsoleColor.Blue;
                 }
-            } while (surfaceShape != "rectangular" && surfaceShape != "circular");
+            } while (surfaceShape != rectangular_string && surfaceShape != circular_string);
 
             Console.ForegroundColor = ConsoleColor.White;
 
+            double width;
+            double length;
+            double costPerUnitFlooring;
+            double materialCost;
+            double surface;
+            double flooringTeamCost;
+            double flooringTime;
+            double requiredFlooringTime;
+            double totalCost;
+            double radious;
+
             {
-                if (surfaceShape == "rectangular")
+                if (surfaceShape == rectangular_string)
                 {
                     //Calculate surface asking different dimensions(Radius => surface pi*Radious^2)
                     //add 10% extra in material calculation for scrap and extra work
@@ -78,13 +75,13 @@ namespace TileCost_Calculator
 
                     //shape related calculations;
                     surface = Double.Pi * Math.Pow(radious, 2.0);
-                    materialCost = costPerUnitFlooring * surface * (1 + scrapRate);
+                    materialCost = costPerUnitFlooring * surface * (1 + scrap_rate);
                 }
 
                 //independent calculations and printing
-                requiredFlooringTime = surface / flooringTeamPerformance; //[hr]
+                requiredFlooringTime = surface / flooring_team_performance; //[hr]
                 //Labor specific cost [$/(feet^2*hr)] * [feet^2] * [hr] = [$]
-                flooringTeamCost = laborCostPerAreaPerHour * surface * requiredFlooringTime;
+                flooringTeamCost = labor_cost_per_area_per_hour * surface * requiredFlooringTime;
 
                 //print results;
                 Console.WriteLine("------------------------------------------------");
