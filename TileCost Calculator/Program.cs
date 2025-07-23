@@ -6,18 +6,18 @@ namespace TileCost_Calculator
     {
         static void Main(string[] args)
         {
-            const double scrap_rate = 0.10; //assumption for circular calculations
+            const double SCRAP_RATE = 0.10; //assumption for circular calculations
             //can only put in 20 square feet of flooring per hour at a cost of $86.00/hr.
-            const double labor_cost_per_area_per_hour = 86.0 / 20.0; //[$/(feet^2*hr)]
+            const double LABOR_COST_PER_AREA_PER_HOUR = 86.0 / 20.0; //[$/(feet^2*hr)]
             //can only put in 20 square feet of flooring per hour at a cost of $86.00/hr. => Flooring performance = 20 feet2/hr
-            const double flooring_team_performance = 20; //[feet^2/hr]
-            const string rectangular_string = "rectangular";
-            const string circular_string = "circular";
+            const double FLOORING_TEAM_PERFORMANCE = 20; //[feet^2/hr]
+            const string RECTANGULAR_STRING = "rectangular";
+            const string CIRCULAR_STRING = "circular";
 
             string surfaceShape;
 
             //Team cost in [$/(feet^2*hr)]
-            Console.WriteLine($"Debugging line | laborCostPerAreaPerHour = {labor_cost_per_area_per_hour}");
+            Console.WriteLine($"Debugging line | laborCostPerAreaPerHour = {LABOR_COST_PER_AREA_PER_HOUR}");
 
             do
             {
@@ -25,13 +25,13 @@ namespace TileCost_Calculator
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine($"Do you want a 'rectangular' or 'circular' surface flooring?");
                 surfaceShape = Console.ReadLine();
-                if (surfaceShape != rectangular_string && surfaceShape != circular_string)
+                if (surfaceShape != RECTANGULAR_STRING && surfaceShape != CIRCULAR_STRING)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("You have to enter 'rectangular' or 'circular'.");
                     Console.ForegroundColor = ConsoleColor.Blue;
                 }
-            } while (surfaceShape != rectangular_string && surfaceShape != circular_string);
+            } while (surfaceShape != RECTANGULAR_STRING && surfaceShape != CIRCULAR_STRING);
 
             Console.ForegroundColor = ConsoleColor.White;
 
@@ -47,7 +47,7 @@ namespace TileCost_Calculator
             double radious;
 
             {
-                if (surfaceShape == rectangular_string)
+                if (surfaceShape == RECTANGULAR_STRING)
                 {
                     //Calculate surface asking different dimensions(Radius => surface pi*Radious^2)
                     //add 10% extra in material calculation for scrap and extra work
@@ -75,13 +75,13 @@ namespace TileCost_Calculator
 
                     //shape related calculations;
                     surface = Double.Pi * Math.Pow(radious, 2.0);
-                    materialCost = costPerUnitFlooring * surface * (1 + scrap_rate);
+                    materialCost = costPerUnitFlooring * surface * (1 + SCRAP_RATE);
                 }
 
                 //independent calculations and printing
-                requiredFlooringTime = surface / flooring_team_performance; //[hr]
+                requiredFlooringTime = surface / FLOORING_TEAM_PERFORMANCE; //[hr]
                 //Labor specific cost [$/(feet^2*hr)] * [feet^2] * [hr] = [$]
-                flooringTeamCost = labor_cost_per_area_per_hour * surface * requiredFlooringTime;
+                flooringTeamCost = LABOR_COST_PER_AREA_PER_HOUR * surface * requiredFlooringTime;
 
                 //print results;
                 Console.WriteLine("------------------------------------------------");
