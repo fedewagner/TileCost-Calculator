@@ -5,7 +5,7 @@
         <TargetFramework>net9.0</TargetFramework>
         <RootNamespace>TileCost_Calculator</RootNamespace>
         <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
+        <Nullable>disable</Nullable>
     </PropertyGroup>
 
 </Project>
